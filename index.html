@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Estimation of π</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Estimation of π">
+  <meta name="author" content="Jose M. Perez-Sanchez">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Estimation of π</h1>
+    <h2>Coursera Developing Data Products course project</h2>
+    <p>Jose M. Perez-Sanchez<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is π?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The number π is a mathematical constant, the ratio of a circle&#39;s circumference to its diameter, approximately equal to 3.14159. It has been represented by the Greek letter &quot;π&quot; since the mid-18th century though it is also sometimes spelled out as &quot;pi&quot; (/paɪ/). (<a href="https://en.wikipedia.org/wiki/Pi">https://en.wikipedia.org/wiki/Pi</a>)</p>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Our estimation of π</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>General procedure:</p>
+
+<ul>
+<li><p>Estimate π using the formula for the area of the circle</p></li>
+<li><p>Estimate the area of the circle using a Monte Carlo method (random numbers)</p></li>
+</ul>
+
+<p>Estimation of the area and π:</p>
+
+<ul>
+<li><p>For a circle inscribed in a square, the side of the square is twice the radius of the circle. The area of the square is the square of its side.</p></li>
+<li><p>For random points inside the square with a uniform distribution for each coordinate, the probability of a point falling inside the circle is equal to the ratio between the areas of the circle and the square.</p></li>
+<li><p>The ratio of the number of points inside the circle to the total number of points, multiplied by four, will converge to π as the number of point tends to infinity.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">num.points &lt;- 1e6
+set.seed(623)
+x &lt;- runif(num.points, -1, 1)
+y &lt;- runif(num.points, -1, 1)
+# No square root needed for comparison since radius is one
+count.inside &lt;- sum(x^2 + y^2 &lt; 1)
+pi.est &lt;- 4 * count.inside / num.points
+</code></pre>
+
+<pre><code>## [1] &quot;PI estimation:    3.141756&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;Reference value:  3.14159265358979&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;Error of this estimation:  0.0052 %&quot;
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Wrap-up</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This method converges very slow compared to others, since you need many points to make a good estimation</li>
+</ul>
+
+<p>BUT:</p>
+
+<ul>
+<li>This method is simple and is a very nice example for students. It shows a simple and straighforward application of Monte Carlo.</li>
+</ul>
+
+<p>Check the web app:</p>
+
+<ul>
+<li><a href="https://iosephus.shinyapps.io/Compute-Pi/">https://iosephus.shinyapps.io/Compute-Pi/</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is π?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Our estimation of π'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Example'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Wrap-up'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
